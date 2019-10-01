@@ -1,0 +1,1 @@
+{"version":3,"file":"CheckboxGroupContext.js","sourceRoot":"src/","sources":["CheckboxGroupContext.ts"],"names":[],"mappings":";;;;;AAAA,0BAA0B;AAC1B,gDAA0B;AAU1B,kBAAe,eAAK,CAAC,aAAa,CAO/B;IACG,oBAAoB,EAAE,IAAI,GAAG,EAAyB;IACtD,UAAU,EAAE,IAAI,GAAG,EAAyB;IAC5C,cAAc,EAAE,KAAK;IACrB,0BAA0B,EAAE;QACxB,OAAO;IACX,CAAC;IACD,gBAAgB,EAAE;QACd,OAAO;IACX,CAAC;CACF,CAAC,CAAC"}
