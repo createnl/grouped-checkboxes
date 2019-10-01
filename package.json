@@ -2,6 +2,10 @@
   "name": "grouped-checkboxes",
   "version": "0.0.1",
   "description": "Grouped checkboxes with check-all checkboxes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/createnl/grouped-checkboxes"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -35,5 +39,9 @@
     "tslint-react": "^4.1.0",
     "tslint-react-hooks": "^2.2.1",
     "typescript": "^3.6.3"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }

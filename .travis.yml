@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 12
+before_scripts:
+  - npm i -g typescript
+jobs:
+  include:
+    - stage: "Tests"
+      name: "Compile"
+      script: tsc --noEmit
+    - script:
+        - npm install codecov -g
+        - jest --coverage
+        - codecov
+      name: "Jest"
