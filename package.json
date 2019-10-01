@@ -2,6 +2,10 @@
   "name": "grouped-checkboxes",
   "version": "0.0.1",
   "description": "Grouped checkboxes with check-all checkboxes",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/createnl/grouped-checkboxes"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
