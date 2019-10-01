@@ -3,13 +3,13 @@ node_js:
   - 12
 before_scripts:
   - npm i -g typescript
-  - npm install codecov -g
 jobs:
   include:
     - stage: "Tests"
       name: "Compile"
       script: tsc --noEmit
-    - script: jest --coverage
-      after_success:
+    - script:
+        - npm install codecov -g
+        - jest --coverage
         - codecov
       name: "Jest"
