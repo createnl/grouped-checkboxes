@@ -1,6 +1,7 @@
 # Grouped Checkboxes
 [![codecov](https://codecov.io/gh/createnl/grouped-checkboxes/branch/master/graph/badge.svg)](https://codecov.io/gh/createnl/grouped-checkboxes)
 [![Build Status](https://travis-ci.org/createnl/grouped-checkboxes.svg?branch=master)](https://travis-ci.org/createnl/grouped-checkboxes)
+[![GitHub](https://img.shields.io/github/license/createnl/grouped-checkboxes)](https://github.com/createnl/grouped-checkboxes/blob/master/LICENSE)
 
 An easy to use React Component to create a checkbox group with a checkbox to check all checkboxes.
 
