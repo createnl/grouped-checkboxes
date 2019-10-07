@@ -2,6 +2,7 @@ import React, {
   FC, ReactElement, useState,
 } from 'react';
 import CheckboxGroupContext, { CheckboxEntry } from './CheckboxGroupContext';
+import debounce from 'lodash.debounce';
 
 interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   checked: boolean;
@@ -14,6 +15,8 @@ interface CheckboxGroupProps {
   defaultDisabled?: boolean;
   onChange?: (checkboxes: CheckboxChange[]) => void;
 }
+
+const ON_CHANGE_DEBOUNCE_TIMEOUT = 100;
 
 const CheckboxGroup: FC<CheckboxGroupProps> = ({
   children,
@@ -43,6 +46,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
     onChange(checkboxChangeArray);
   };
 
+  const debouncedOnChange = debounce(dispatchOnChange, ON_CHANGE_DEBOUNCE_TIMEOUT);
+
   const setAllCheckboxesChecked = (state: boolean): void => {
     allCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(state));
     checkboxes.forEach((checkbox, key): void => {
@@ -68,7 +73,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   const onCheckboxChange = (): void => {
     const allChecked = allCheckboxesAreChecked();
     allCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(allChecked));
-    dispatchOnChange();
+    debouncedOnChange();
   };
 
   const onAllCheckerCheckboxChange = (key: string, initialized: boolean): void => {
@@ -80,7 +85,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
 
     if( initialized ) {
       setAllCheckboxesChecked(allCheckerCheckbox.isChecked === true);
-      dispatchOnChange();
+      debouncedOnChange();
     } else {
       setAllCheckboxesChecked(defaultChecked || allCheckboxesAreChecked());
     }
