@@ -163,10 +163,11 @@ it('Click on checkbox will trigger onChange on checkboxGroup', () => {
         </CheckboxGroup>
     );
 
-    const checkbox1 = component.getByTestId('test-checkbox-1') as HTMLInputElement;
-
-    fireEvent.click(checkbox1);
-    expect(testOnChange.mock.calls.length).toBe(4);
+    setTimeout(() => {
+        const checkbox1 = component.getByTestId('test-checkbox-1') as HTMLInputElement;
+        fireEvent.click(checkbox1);
+        expect(testOnChange.mock.calls.length).toBe(1);
+    }, 100);
 });
 
 it('Click on allCheckerCheckbox will trigger onChange on checkboxGroup', () => {
@@ -181,11 +182,11 @@ it('Click on allCheckerCheckbox will trigger onChange on checkboxGroup', () => {
             <AllCheckerCheckbox id={"all-checker-checkbox-2"} data-testid="all-checker-checkbox-2" />
         </CheckboxGroup>
     );
-
-    const allCheckerCheckbox1 = component.getByTestId('all-checker-checkbox-1') as HTMLInputElement;
-
-    fireEvent.click(allCheckerCheckbox1);
-    expect(testOnChange.mock.calls.length).toBe(4);
+    setTimeout(() => {
+        const allCheckerCheckbox1 = component.getByTestId('all-checker-checkbox-1') as HTMLInputElement;
+        fireEvent.click(allCheckerCheckbox1);
+        expect(testOnChange.mock.calls.length).toBe(1);
+    }, 251);
 });
 
 it('Click will trigger onChange on checkbox', () => {
