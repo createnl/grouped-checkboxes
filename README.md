@@ -2,7 +2,8 @@
 [![codecov](https://codecov.io/gh/createnl/grouped-checkboxes/branch/master/graph/badge.svg)](https://codecov.io/gh/createnl/grouped-checkboxes)
 [![Build Status](https://travis-ci.org/createnl/grouped-checkboxes.svg?branch=master)](https://travis-ci.org/createnl/grouped-checkboxes)
 [![GitHub](https://img.shields.io/github/license/createnl/grouped-checkboxes)](https://github.com/createnl/grouped-checkboxes/blob/master/LICENSE)
-
+[![npm](https://img.shields.io/npm/dt/@createnl/grouped-checkboxes)](https://www.npmjs.com/package/@createnl/grouped-checkboxes)
+[![React](https://img.shields.io/badge/React-%3E%3D%2016.8.0-brightgreen)](https://github.com/facebook/react)
 An easy to use React Component to create a checkbox group with a checkbox to check all checkboxes.
 
 ## Installation
@@ -14,6 +15,10 @@ yarn add @createnl/grouped-checkboxes
 ```
 
 ## Example
+Live examples: https://v5sww.csb.app/
+
+Codesandbox: https://codesandbox.io/s/grouped-checkboxes-v5sww
+
 ``` jsx harmony
 import React from "react";
 import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
