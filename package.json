@@ -1,10 +1,10 @@
 {
-  "name": "grouped-checkboxes",
+  "name": "@createnl/grouped-checkboxes",
   "version": "0.0.1",
   "description": "Grouped checkboxes with check-all checkboxes",
   "repository": {
     "type": "git",
-    "url": "https://github.com/createnl/grouped-checkboxes"
+    "url": "git+https://github.com/createnl/grouped-checkboxes.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -47,5 +47,9 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/createnl/grouped-checkboxes/issues"
+  },
+  "homepage": "https://github.com/createnl/grouped-checkboxes#readme"
 }

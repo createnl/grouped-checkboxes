@@ -7,10 +7,10 @@ An easy to use React Component to create a checkbox group with a checkbox to che
 
 ## Installation
 ```
-npm install --save createnl/grouped-checkboxes
+npm install --save @createnl/grouped-checkboxes
 ```
 ```
-yarn add createnl/grouped-checkboxes
+yarn add @createnl/grouped-checkboxes
 ```
 
 ## Example
