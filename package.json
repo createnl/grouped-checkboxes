@@ -1,6 +1,6 @@
 {
   "name": "@createnl/grouped-checkboxes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Grouped checkboxes with check-all checkboxes",
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   "author": "Alex Lisenkov",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@testing-library/react": "^9.2.0",
