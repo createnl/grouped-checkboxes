@@ -23,14 +23,8 @@ const AllCheckerCheckbox: FC<AllCheckerCheckboxProps> = (props): ReactElement =>
   const [isChecked, setIsChecked] = useState<boolean|undefined>(checkboxGroup.defaultChecked);
   const [isDisabled, setIsDisabled] = useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
 
-  const assertIdDoesNotExist = (subject: string): void => {
-    if (checkboxGroup.checkboxes.has(subject) || checkboxGroup.allCheckerCheckboxes.has(subject)) {
-      throw new Error(`Duplicate id ${subject} in CheckboxGroup`);
-    }
-  };
-
   useEffect((): () => void => {
-    assertIdDoesNotExist(id);
+    checkboxGroup.assertIdDoesNotExist(id);
     return (): void => {
       checkboxGroup.allCheckerCheckboxes.delete(id);
     }
@@ -38,7 +32,7 @@ const AllCheckerCheckbox: FC<AllCheckerCheckboxProps> = (props): ReactElement =>
 
   useEffect((): void => {
     if (prevId !== id) {
-      assertIdDoesNotExist(id);
+      checkboxGroup.assertIdDoesNotExist(id);
       checkboxGroup.allCheckerCheckboxes.delete(prevId);
       setInitialized(false);
       setPrevId(id);

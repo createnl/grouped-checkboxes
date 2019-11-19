@@ -23,28 +23,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var CheckboxGroupContext_1 = __importDefault(require("./CheckboxGroupContext"));
-var AllCheckerCheckbox = function (props) {
+var NoneCheckerCheckbox = function (props) {
     var disabled = props.disabled, id = props.id, onChange = props.onChange;
     var checkboxGroup = react_1.useContext(CheckboxGroupContext_1.default);
     var _a = react_1.useState(id), prevId = _a[0], setPrevId = _a[1];
     var _b = react_1.useState(false), initialized = _b[0], setInitialized = _b[1];
     var _c = react_1.useState(true), shouldTriggerCheckboxContextChange = _c[0], setShouldTriggerCheckboxContextChange = _c[1];
-    var _d = react_1.useState(checkboxGroup.defaultChecked), isChecked = _d[0], setIsChecked = _d[1];
+    var _d = react_1.useState(checkboxGroup.defaultChecked !== undefined ? !checkboxGroup.defaultChecked : undefined), isChecked = _d[0], setIsChecked = _d[1];
     var _e = react_1.useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _e[0], setIsDisabled = _e[1];
     react_1.useEffect(function () {
         checkboxGroup.assertIdDoesNotExist(id);
         return function () {
-            checkboxGroup.allCheckerCheckboxes.delete(id);
+            checkboxGroup.noneCheckerCheckboxes.delete(id);
         };
     }, []);
     react_1.useEffect(function () {
         if (prevId !== id) {
             checkboxGroup.assertIdDoesNotExist(id);
-            checkboxGroup.allCheckerCheckboxes.delete(prevId);
+            checkboxGroup.noneCheckerCheckboxes.delete(prevId);
             setInitialized(false);
             setPrevId(id);
         }
-        checkboxGroup.allCheckerCheckboxes.set(id, {
+        checkboxGroup.noneCheckerCheckboxes.set(id, {
             isChecked: isChecked,
             isDisabled: isDisabled,
             props: props,
@@ -52,7 +52,7 @@ var AllCheckerCheckbox = function (props) {
             setIsDisabled: setIsDisabled,
         });
         if (shouldTriggerCheckboxContextChange) {
-            checkboxGroup.onAllCheckerCheckboxChange(id, initialized);
+            checkboxGroup.onNoneCheckerCheckboxChange(id, initialized);
             setShouldTriggerCheckboxContextChange(false);
         }
         if (!initialized) {
@@ -73,5 +73,5 @@ var AllCheckerCheckbox = function (props) {
     };
     return (react_1.default.createElement("input", __assign({ type: "checkbox" }, props, { onChange: handleChange, checked: isChecked !== undefined ? isChecked : false, disabled: isDisabled !== undefined ? isDisabled : false })));
 };
-exports.default = AllCheckerCheckbox;
-//# sourceMappingURL=AllCheckerCheckbox.js.map
+exports.default = NoneCheckerCheckbox;
+//# sourceMappingURL=NoneCheckerCheckbox.js.map

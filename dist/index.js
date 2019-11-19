@@ -9,4 +9,6 @@ var Checkbox_1 = __importDefault(require("./Checkbox"));
 exports.Checkbox = Checkbox_1.default;
 var CheckboxGroup_1 = __importDefault(require("./CheckboxGroup"));
 exports.CheckboxGroup = CheckboxGroup_1.default;
+var NoneCheckerCheckbox_1 = __importDefault(require("./NoneCheckerCheckbox"));
+exports.NoneCheckerCheckbox = NoneCheckerCheckbox_1.default;
 //# sourceMappingURL=index.js.map
