@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/dt/@createnl/grouped-checkboxes)](https://www.npmjs.com/package/@createnl/grouped-checkboxes)
 [![React](https://img.shields.io/badge/React-^16.8.0-brightgreen)](https://github.com/facebook/react)
 
-An easy to use React Component to create a checkbox group with a checkbox to check all checkboxes.
+An easy to use React Component to create a checkbox group with a checkbox to check all checkboxes and a checkbox to check none.
 
 ## Installation
 ```
@@ -16,6 +16,8 @@ yarn add @createnl/grouped-checkboxes
 ```
 
 ## Example
+[![See examples](example.gif)](https://v5sww.csb.app/)
+
 Live examples: https://v5sww.csb.app/
 
 Codesandbox: https://codesandbox.io/s/grouped-checkboxes-v5sww
@@ -44,7 +46,7 @@ Note that:
 - All checkboxes and allCheckerCheckboxes must have an unique id
 
 ## Features
-- Multiple `AllCheckerCheckboxes` inside a group
+- Multiple `AllCheckerCheckboxes` and `NoneCheckerCheckboxes` inside a group
 - `onChange` callback on group
 - Possibility to nest checkboxes in your own components
 - Possibility to check or disable by default
@@ -69,7 +71,7 @@ Note that:
 </CheckboxGroup>
 ```
 
-### Real life example
+### Real life example (with check all)
 ``` jsx harmony
 import React from "react";
 import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
@@ -108,7 +110,7 @@ The value of an onChange parameter looks like:
     {
         "checked": true,
         "disabled": false,
-        "id": "tos",
+        "id": "tos"
     },
     {
         "checked": true,
@@ -123,3 +125,61 @@ The value of an onChange parameter looks like:
 ]
 ```
 All given props will be accessible.
+
+### Real life example (with none-checker)
+If you need a checkbox that will check when nothing is checked you can use the NoneCheckerCheckbox.
+This checkbox can be clicked to uncheck everything else, but can't be unchecked to check everything else. 
+
+``` jsx harmony
+import React from "react";
+import { NoneCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
+
+const LunchDeclaration = (props) => {
+    const onCheckboxChange = (checkboxes) => {
+        console.log(checkboxes);
+    }    
+
+    return (
+        <CheckboxGroup onChange={console.log}>
+          <h1>What did you eat for lunch?</h1>
+          <label>
+            <Checkbox id="pizza" />
+            Pizza
+          </label>
+          <label>
+            <Checkbox id="burger" />
+            Burger
+          </label>
+          <label>
+            <Checkbox id="fries" />
+            Fries
+          </label>
+          <label>
+            <NoneCheckerCheckbox id="nothing" />
+            Nothing
+          </label>
+        </CheckboxGroup>
+    );
+};
+```
+The value of an onChange parameter looks like:
+```json
+[
+    {
+        "checked": true,
+        "disabled": false,
+        "id": "pizza"
+    },
+    {
+        "checked": true,
+        "disabled": false,
+        "id": "burger"
+    }, 
+    {
+        "checked": true,
+        "disabled": false,
+        "id": "fries"
+    }
+]
+```
+Note that the value of the NoneCheckerCheckbox will not be passed.
