@@ -3,13 +3,13 @@ import React, {
 } from 'react';
 import CheckboxGroupContext from './CheckboxGroupContext';
 
-interface CheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface NoneCheckerCheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   id: string;
+  checked?: never;
 }
 
-const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
+const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement => {
   const {
-    checked,
     disabled,
     id,
     onChange,
@@ -18,33 +18,27 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
   const checkboxGroup = useContext(CheckboxGroupContext);
 
   const [prevId, setPrevId] = useState<string>(id);
+  const [initialized, setInitialized] = useState(false);
   const [shouldTriggerCheckboxContextChange, setShouldTriggerCheckboxContextChange] = useState<boolean>(true);
-  const [isChecked, setIsChecked] = useState<boolean|undefined>(checked !== undefined ? checked : checkboxGroup.defaultChecked);
-  const [isDisabled, setIsDisabled] = useState<boolean|undefined>(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
+  const [isChecked, setIsChecked] = useState<boolean|undefined>(checkboxGroup.defaultChecked !== undefined ? !checkboxGroup.defaultChecked : undefined);
+  const [isDisabled, setIsDisabled] = useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
 
   useEffect((): () => void => {
     checkboxGroup.assertIdDoesNotExist(id);
     return (): void => {
-      checkboxGroup.checkboxes.delete(id);
-      checkboxGroup.onCheckboxChange();
-    };
-  }, []);
-
-  useEffect((): void => {
-    if (checked !== undefined) {
-      setShouldTriggerCheckboxContextChange(true);
-      setIsChecked(checked);
+      checkboxGroup.noneCheckerCheckboxes.delete(id);
     }
-  }, [checked, setIsChecked, setShouldTriggerCheckboxContextChange]);
+  }, []);
 
   useEffect((): void => {
     if (prevId !== id) {
       checkboxGroup.assertIdDoesNotExist(id);
-      checkboxGroup.checkboxes.delete(prevId);
+      checkboxGroup.noneCheckerCheckboxes.delete(prevId);
+      setInitialized(false);
       setPrevId(id);
     }
 
-    checkboxGroup.checkboxes.set(id, {
+    checkboxGroup.noneCheckerCheckboxes.set(id, {
       isChecked,
       isDisabled,
       props,
@@ -53,15 +47,19 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
     });
 
     if (shouldTriggerCheckboxContextChange) {
-      checkboxGroup.onCheckboxChange();
+      checkboxGroup.onNoneCheckerCheckboxChange(id, initialized);
       setShouldTriggerCheckboxContextChange(false);
     }
+
+    if (!initialized) {
+      setInitialized(true);
+    }
   }, [
-    id, prevId, isChecked, isDisabled, setIsChecked, setIsDisabled,
+    id, prevId, isChecked, isDisabled, setIsChecked, setIsDisabled, initialized,
     setShouldTriggerCheckboxContextChange, checkboxGroup, shouldTriggerCheckboxContextChange,
   ]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (!isDisabled) {
       setShouldTriggerCheckboxContextChange(true);
       setIsChecked(event.target.checked);
@@ -83,4 +81,4 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
   );
 };
 
-export default Checkbox;
+export default NoneCheckerCheckbox;

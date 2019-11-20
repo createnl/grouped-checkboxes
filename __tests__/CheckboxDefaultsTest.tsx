@@ -1,6 +1,6 @@
 import {cleanup, render} from '@testing-library/react';
 import React from 'react';
-import {AllCheckerCheckbox, Checkbox, CheckboxGroup} from "../src";
+import {AllCheckerCheckbox, Checkbox, CheckboxGroup, NoneCheckerCheckbox} from "../src";
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
@@ -270,10 +270,12 @@ it('CheckboxGroup with default disabled combination of checkboxes and allChecker
 it('CheckboxGroup without default disabled combination of checkboxes and allCheckerCheckbox will be disabled', () => {
     const component = render(
         <CheckboxGroup>
+            <NoneCheckerCheckbox id={"test-checkbox-6"} data-testid="test-checkbox-6" />
             <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
             <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
             <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
             <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
+            <NoneCheckerCheckbox id={"test-checkbox-5"} data-testid="test-checkbox-5" />
         </CheckboxGroup>
     );
 
@@ -281,20 +283,26 @@ it('CheckboxGroup without default disabled combination of checkboxes and allChec
     const checkbox2 = component.getByTestId('test-checkbox-2') as HTMLInputElement;
     const checkbox3 = component.getByTestId('test-checkbox-3') as HTMLInputElement;
     const checkbox4 = component.getByTestId('test-checkbox-4') as HTMLInputElement;
+    const checkbox5 = component.getByTestId('test-checkbox-5') as HTMLInputElement;
+    const checkbox6 = component.getByTestId('test-checkbox-6') as HTMLInputElement;
 
     expect(checkbox1.disabled).toEqual(false);
     expect(checkbox2.disabled).toEqual(false);
     expect(checkbox3.disabled).toEqual(false);
     expect(checkbox4.disabled).toEqual(false);
+    expect(checkbox5.disabled).toEqual(false);
+    expect(checkbox6.disabled).toEqual(false);
 });
 
 it('CheckboxGroup with default checked and default disabled combination of checkboxes and allCheckerCheckbox will be checked and disabled', () => {
     const component = render(
         <CheckboxGroup defaultChecked defaultDisabled>
+            <NoneCheckerCheckbox id={"test-checkbox-6"} data-testid="test-checkbox-6" />
             <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
             <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
             <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
             <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
+            <NoneCheckerCheckbox id={"test-checkbox-5"} data-testid="test-checkbox-5" />
         </CheckboxGroup>
     );
 
@@ -302,14 +310,19 @@ it('CheckboxGroup with default checked and default disabled combination of check
     const checkbox2 = component.getByTestId('test-checkbox-2') as HTMLInputElement;
     const checkbox3 = component.getByTestId('test-checkbox-3') as HTMLInputElement;
     const checkbox4 = component.getByTestId('test-checkbox-4') as HTMLInputElement;
+    const checkbox5 = component.getByTestId('test-checkbox-5') as HTMLInputElement;
+    const checkbox6 = component.getByTestId('test-checkbox-6') as HTMLInputElement;
 
     expect(checkbox1.checked).toEqual(true);
     expect(checkbox2.checked).toEqual(true);
     expect(checkbox3.checked).toEqual(true);
     expect(checkbox4.checked).toEqual(true);
+    expect(checkbox5.checked).toEqual(false);
+    expect(checkbox6.checked).toEqual(false);
 
     expect(checkbox1.disabled).toEqual(true);
     expect(checkbox2.disabled).toEqual(true);
     expect(checkbox3.disabled).toEqual(true);
-    expect(checkbox4.disabled).toEqual(true);
+    expect(checkbox5.disabled).toEqual(true);
+    expect(checkbox6.disabled).toEqual(true);
 });

@@ -1,8 +1,8 @@
+import debounce from 'lodash.debounce';
 import React, {
   FC, ReactElement, useState,
 } from 'react';
 import CheckboxGroupContext, { CheckboxEntry } from './CheckboxGroupContext';
-import debounce from 'lodash.debounce';
 
 interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   checked: boolean;
@@ -26,6 +26,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
 }): ReactElement => {
   const [checkboxes] = useState(new Map<string, CheckboxEntry>());
   const [allCheckerCheckboxes] = useState(new Map<string, CheckboxEntry>());
+  const [noneCheckerCheckboxes] = useState(new Map<string, CheckboxEntry>());
 
   const dispatchOnChange = (): void => {
     if (onChange === undefined) {
@@ -50,6 +51,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
 
   const setAllCheckboxesChecked = (state: boolean): void => {
     allCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(state));
+    noneCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(!state));
     checkboxes.forEach((checkbox, key): void => {
       const clone = checkbox;
       checkbox.setIsChecked(state);
@@ -58,21 +60,33 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
     });
   };
 
-  const allCheckboxesAreChecked = (): boolean => {
-    let amountChecked = 0;
+  const amountChecked = (): number => {
+    let count = 0;
 
     checkboxes.forEach((checkbox): void => {
       if (checkbox.isChecked === true) {
-        amountChecked += 1;
+        count += 1;
       }
     });
 
-    return amountChecked > 0 && amountChecked === checkboxes.size;
+    return count;
   };
+
+  const allCheckboxesAreChecked = (): boolean => {
+    const checkedCount = amountChecked();
+
+    return checkedCount > 0 && checkedCount === checkboxes.size;
+  };
+
+  const allCheckboxesAreNotChecked = (): boolean => amountChecked() === 0;
 
   const onCheckboxChange = (): void => {
     const allChecked = allCheckboxesAreChecked();
     allCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(allChecked));
+
+    const noneChecked = allCheckboxesAreNotChecked();
+    noneCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(noneChecked));
+
     debouncedOnChange();
   };
 
@@ -91,13 +105,39 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
     }
   };
 
+  const onNoneCheckerCheckboxChange = (key: string, initialized: boolean): void => {
+    const noneCheckerCheckbox = noneCheckerCheckboxes.get(key);
+
+    if (!noneCheckerCheckbox) {
+      return;
+    }
+
+    if (initialized && noneCheckerCheckbox.isChecked) {
+      setAllCheckboxesChecked(false);
+      debouncedOnChange();
+    } else if (!noneCheckerCheckbox.isChecked && allCheckboxesAreNotChecked()) {
+      noneCheckerCheckbox.setIsChecked(true);
+    }
+  };
+
+  const hasCheckbox = (id: string) => checkboxes.has(id) || allCheckerCheckboxes.has(id) || noneCheckerCheckboxes.has(id);
+
+  const assertIdDoesNotExist = (subject: string): void => {
+    if (hasCheckbox(subject)) {
+      throw new Error(`Duplicate id ${subject} in CheckboxGroup`);
+    }
+  };
+
   const contextValue = {
     allCheckerCheckboxes,
+    assertIdDoesNotExist,
     checkboxes,
     defaultChecked,
     defaultDisabled,
+    noneCheckerCheckboxes,
     onAllCheckerCheckboxChange,
     onCheckboxChange,
+    onNoneCheckerCheckboxChange,
   };
 
   return (

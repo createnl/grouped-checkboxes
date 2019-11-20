@@ -30,13 +30,8 @@ var Checkbox = function (props) {
     var _b = react_1.useState(true), shouldTriggerCheckboxContextChange = _b[0], setShouldTriggerCheckboxContextChange = _b[1];
     var _c = react_1.useState(checked !== undefined ? checked : checkboxGroup.defaultChecked), isChecked = _c[0], setIsChecked = _c[1];
     var _d = react_1.useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _d[0], setIsDisabled = _d[1];
-    var assertIdDoesNotExist = function (subject) {
-        if (checkboxGroup.checkboxes.has(subject) || checkboxGroup.allCheckerCheckboxes.has(subject)) {
-            throw new Error("Duplicate id " + subject + " in CheckboxGroup");
-        }
-    };
     react_1.useEffect(function () {
-        assertIdDoesNotExist(id);
+        checkboxGroup.assertIdDoesNotExist(id);
         return function () {
             checkboxGroup.checkboxes.delete(id);
             checkboxGroup.onCheckboxChange();
@@ -50,7 +45,7 @@ var Checkbox = function (props) {
     }, [checked, setIsChecked, setShouldTriggerCheckboxContextChange]);
     react_1.useEffect(function () {
         if (prevId !== id) {
-            assertIdDoesNotExist(id);
+            checkboxGroup.assertIdDoesNotExist(id);
             checkboxGroup.checkboxes.delete(prevId);
             setPrevId(id);
         }
