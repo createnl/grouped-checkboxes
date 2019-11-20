@@ -1,6 +1,6 @@
 {
   "name": "@createnl/grouped-checkboxes",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Grouped checkboxes with check-all checkboxes",
   "repository": {
     "type": "git",
