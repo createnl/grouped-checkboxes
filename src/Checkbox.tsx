@@ -13,6 +13,7 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
     disabled,
     id,
     onChange,
+    onClick,
   } = props;
 
   const checkboxGroup = useContext(CheckboxGroupContext);
@@ -21,6 +22,7 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
   const [shouldTriggerCheckboxContextChange, setShouldTriggerCheckboxContextChange] = useState<boolean>(true);
   const [isChecked, setIsChecked] = useState<boolean|undefined>(checked !== undefined ? checked : checkboxGroup.defaultChecked);
   const [isDisabled, setIsDisabled] = useState<boolean|undefined>(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
+  const [isShiftKeyClicked, setIsShiftKeyClicked] = useState<boolean>(false);
 
   useEffect((): () => void => {
     checkboxGroup.assertIdDoesNotExist(id);
@@ -53,13 +55,26 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
     });
 
     if (shouldTriggerCheckboxContextChange) {
-      checkboxGroup.onCheckboxChange();
+      if (isShiftKeyClicked) {
+        checkboxGroup.toggleShiftGroup(id);
+      } else {
+        checkboxGroup.onCheckboxChange(id);
+      }
+
       setShouldTriggerCheckboxContextChange(false);
     }
   }, [
     id, prevId, isChecked, isDisabled, setIsChecked, setIsDisabled,
     setShouldTriggerCheckboxContextChange, checkboxGroup, shouldTriggerCheckboxContextChange,
   ]);
+
+  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    setIsShiftKeyClicked(event.shiftKey);
+
+    if (onClick !== undefined) {
+      onClick(event);
+    }
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isDisabled) {
@@ -76,6 +91,7 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
     <input
       type="checkbox"
       {...props}
+      onClick={handleClick}
       onChange={handleChange}
       checked={isChecked !== undefined ? isChecked : false}
       disabled={isDisabled !== undefined ? isDisabled : false}

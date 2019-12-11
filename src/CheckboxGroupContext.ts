@@ -17,8 +17,9 @@ export default React.createContext<{
     defaultDisabled?: boolean;
     noneCheckerCheckboxes: Map<string, CheckboxEntry>;
     onAllCheckerCheckboxChange: (key: string, initialized: boolean) => void;
-    onCheckboxChange: () => void;
+    onCheckboxChange: (key?: string) => void;
     onNoneCheckerCheckboxChange: (key: string, initialized: boolean) => void;
+    toggleShiftGroup: (key: string) => void;
 }>({
     allCheckerCheckboxes: new Map<string, CheckboxEntry>(),
     assertIdDoesNotExist: (): void => {
@@ -37,4 +38,7 @@ export default React.createContext<{
     onNoneCheckerCheckboxChange: (): void => {
         return;
     },
+    toggleShiftGroup: (): void => {
+        return;
+    }
 });

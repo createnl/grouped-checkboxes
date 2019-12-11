@@ -115,6 +115,7 @@ var CheckboxGroup = function (_a) {
         onCheckboxChange: onCheckboxChange,
         onNoneCheckerCheckboxChange: onNoneCheckerCheckboxChange,
     };
+    console.log('children', children);
     return (react_1.default.createElement(CheckboxGroupContext_1.default.Provider, { value: contextValue }, children));
 };
 exports.default = CheckboxGroup;

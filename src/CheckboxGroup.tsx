@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import React, {
-  FC, ReactElement, useState,
+  FC, ReactElement, ReactNode, useEffect, useState,
 } from 'react';
 import CheckboxGroupContext, { CheckboxEntry } from './CheckboxGroupContext';
 
@@ -16,7 +16,38 @@ interface CheckboxGroupProps {
   onChange?: (checkboxes: CheckboxChange[]) => void;
 }
 
-const ON_CHANGE_DEBOUNCE_TIMEOUT = 100;
+const objectIsCheckbox = (value: any): value is ReactElement =>
+    typeof value === 'object'
+    && 'type' in value
+    && typeof value.type === 'function'
+    && value.type.name === 'Checkbox';
+
+const objectHasChildren = (value: any): value is ReactElement =>
+    typeof value === 'object'
+    && 'props' in value
+    && value.props.children;
+
+const getChildCheckboxes = (childNodes: ReactNode[]): string[] => {
+  const checkboxList: string[] = [];
+
+  if (!Array.isArray(childNodes)){
+    childNodes = [childNodes];
+  }
+
+  childNodes.forEach((node => {
+    if (objectIsCheckbox(node)) {
+      checkboxList.push(node.props.id);
+    } else if (objectHasChildren(node)) {
+      checkboxList.push(
+        ...getChildCheckboxes(node.props.children)
+      );
+    }
+  }));
+
+  return checkboxList;
+};
+
+const ON_CHANGE_DEBOUNCE_TIMEOUT = 50;
 
 const CheckboxGroup: FC<CheckboxGroupProps> = ({
   children,
@@ -27,6 +58,12 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   const [checkboxes] = useState(new Map<string, CheckboxEntry>());
   const [allCheckerCheckboxes] = useState(new Map<string, CheckboxEntry>());
   const [noneCheckerCheckboxes] = useState(new Map<string, CheckboxEntry>());
+  const [lastToggledId, setLastToggledId] = useState<string>();
+  const [orderedIdList, setOrderedIdList] = useState(getChildCheckboxes(children as ReactNode[] || []));
+
+  useEffect(() => {
+    setOrderedIdList(getChildCheckboxes(children as ReactNode[] || []));
+  }, [checkboxes]);
 
   const dispatchOnChange = (): void => {
     if (onChange === undefined) {
@@ -80,7 +117,11 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
 
   const allCheckboxesAreNotChecked = (): boolean => amountChecked() === 0;
 
-  const onCheckboxChange = (): void => {
+  const onCheckboxChange = (key?: string): void => {
+    if (key) {
+      setLastToggledId(key);
+    }
+
     const allChecked = allCheckboxesAreChecked();
     allCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(allChecked));
 
@@ -88,6 +129,28 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
     noneCheckerCheckboxes.forEach((checkbox): void => checkbox.setIsChecked(noneChecked));
 
     debouncedOnChange();
+  };
+
+  const toggleShiftGroup = (key: string): void => {
+    const endCheckbox = checkboxes.get(key);
+
+    if (!endCheckbox || lastToggledId === undefined) {
+      return;
+    }
+
+    const start = orderedIdList.indexOf(lastToggledId);
+    const end = orderedIdList.indexOf(key);
+    const toggleCheckboxes = orderedIdList.slice(start < end ? start : end, (end > start ? end : start) + 1);
+
+    toggleCheckboxes.forEach((id) => {
+      const toggleCheckbox = checkboxes.get(id);
+      if (toggleCheckbox) {
+        toggleCheckbox.setIsChecked(endCheckbox.isChecked || false);
+      }
+    });
+
+    onCheckboxChange(key);
+
   };
 
   const onAllCheckerCheckboxChange = (key: string, initialized: boolean): void => {
@@ -138,6 +201,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
     onAllCheckerCheckboxChange,
     onCheckboxChange,
     onNoneCheckerCheckboxChange,
+    toggleShiftGroup,
   };
 
   return (
