@@ -63,6 +63,7 @@ var NoneCheckerCheckbox = function (props) {
         setShouldTriggerCheckboxContextChange, checkboxGroup, shouldTriggerCheckboxContextChange,
     ]);
     var handleChange = function (event) {
+        event.persist();
         if (!isDisabled) {
             setShouldTriggerCheckboxContextChange(true);
             setIsChecked(event.target.checked);

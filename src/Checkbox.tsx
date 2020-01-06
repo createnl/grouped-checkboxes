@@ -19,8 +19,8 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
 
   const [prevId, setPrevId] = useState<string>(id);
   const [shouldTriggerCheckboxContextChange, setShouldTriggerCheckboxContextChange] = useState<boolean>(true);
-  const [isChecked, setIsChecked] = useState<boolean|undefined>(checked !== undefined ? checked : checkboxGroup.defaultChecked);
-  const [isDisabled, setIsDisabled] = useState<boolean|undefined>(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
+  const [isChecked, setIsChecked] = useState<boolean | undefined>(checked !== undefined ? checked : checkboxGroup.defaultChecked);
+  const [isDisabled, setIsDisabled] = useState<boolean | undefined>(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled);
 
   useEffect((): () => void => {
     checkboxGroup.assertIdDoesNotExist(id);
@@ -62,6 +62,8 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
   ]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.persist();
+
     if (!isDisabled) {
       setShouldTriggerCheckboxContextChange(true);
       setIsChecked(event.target.checked);
