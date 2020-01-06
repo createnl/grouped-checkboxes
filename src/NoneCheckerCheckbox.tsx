@@ -27,7 +27,7 @@ const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement 
     checkboxGroup.assertIdDoesNotExist(id);
     return (): void => {
       checkboxGroup.noneCheckerCheckboxes.delete(id);
-    }
+    };
   }, []);
 
   useEffect((): void => {
@@ -60,6 +60,8 @@ const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement 
   ]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.persist();
+
     if (!isDisabled) {
       setShouldTriggerCheckboxContextChange(true);
       setIsChecked(event.target.checked);

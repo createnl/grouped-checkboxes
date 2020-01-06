@@ -1,8 +1,8 @@
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 import React, {
   FC, ReactElement, useState,
-} from 'react';
-import CheckboxGroupContext, { CheckboxEntry } from './CheckboxGroupContext';
+} from "react";
+import CheckboxGroupContext, { CheckboxEntry } from "./CheckboxGroupContext";
 
 interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   checked: boolean;
@@ -97,7 +97,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
       return;
     }
 
-    if( initialized ) {
+    if (initialized) {
       setAllCheckboxesChecked(allCheckerCheckbox.isChecked === true);
       debouncedOnChange();
     } else {
