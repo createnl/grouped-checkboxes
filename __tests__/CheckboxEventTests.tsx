@@ -8,7 +8,7 @@ afterEach(cleanup);
 it('Unchecked checkbox will check on click', () => {
     const component = render(
         <CheckboxGroup>
-            <Checkbox id={"test-checkbox"} data-testid="test-checkbox" />
+            <Checkbox data-testid="test-checkbox" />
         </CheckboxGroup>
     );
 
@@ -22,7 +22,7 @@ it('Unchecked checkbox will check on click', () => {
 it('Checked checkbox will uncheck on click', () => {
     const component = render(
         <CheckboxGroup>
-            <Checkbox id={"test-checkbox"} data-testid="test-checkbox" checked />
+            <Checkbox data-testid="test-checkbox" checked />
         </CheckboxGroup>
     );
 
@@ -38,9 +38,9 @@ it('Click on checkbox will trigger onChange on checkboxGroup', (done) => {
 
     const component = render(
         <CheckboxGroup onChange={testOnChange}>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -49,7 +49,7 @@ it('Click on checkbox will trigger onChange on checkboxGroup', (done) => {
 
     setTimeout(() => {
         expect(testOnChange.mock.calls.length).toBe(1);
-        expect(testOnChange.mock.calls[0][0]).toStrictEqual([{"id":"test-checkbox-1","data-testid":"test-checkbox-1","checked":true,"disabled":false},{"id":"test-checkbox-2","data-testid":"test-checkbox-2","checked":false,"disabled":false},{"id":"test-checkbox-3","data-testid":"test-checkbox-3","checked":false,"disabled":false}]);
+        expect(testOnChange.mock.calls[0][0]).toStrictEqual([{"data-testid":"test-checkbox-1","checked":true,"disabled":false},{"data-testid":"test-checkbox-2","checked":false,"disabled":false},{"data-testid":"test-checkbox-3","checked":false,"disabled":false}]);
         done();
     }, 251);
 });
@@ -59,7 +59,7 @@ it('Click will trigger onChange on checkbox', () => {
 
     const component = render(
         <CheckboxGroup>
-            <Checkbox id={"test-checkbox"} data-testid="test-checkbox" onChange={testOnChange} />
+            <Checkbox data-testid="test-checkbox" onChange={testOnChange} />
         </CheckboxGroup>
     );
 

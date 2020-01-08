@@ -2,22 +2,21 @@ import React, {
   FC, ReactElement, useContext, useEffect, useState,
 } from 'react';
 import CheckboxGroupContext from './CheckboxGroupContext';
+import uuid from "./uuid";
 
 interface NoneCheckerCheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  id: string;
   checked?: never;
 }
 
 const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement => {
   const {
     disabled,
-    id,
     onChange,
   } = props;
 
+  const [id] = useState(uuid());
   const checkboxGroup = useContext(CheckboxGroupContext);
 
-  const [prevId, setPrevId] = useState<string>(id);
   const [initialized, setInitialized] = useState(false);
   const [shouldTriggerCheckboxContextChange, setShouldTriggerCheckboxContextChange] = useState<boolean>(true);
   const [isChecked, setIsChecked] = useState<boolean|undefined>(checkboxGroup.defaultChecked !== undefined ? !checkboxGroup.defaultChecked : undefined);
@@ -31,13 +30,6 @@ const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement 
   }, []);
 
   useEffect((): void => {
-    if (prevId !== id) {
-      checkboxGroup.assertIdDoesNotExist(id);
-      checkboxGroup.noneCheckerCheckboxes.delete(prevId);
-      setInitialized(false);
-      setPrevId(id);
-    }
-
     checkboxGroup.noneCheckerCheckboxes.set(id, {
       isChecked,
       isDisabled,
@@ -55,7 +47,7 @@ const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement 
       setInitialized(true);
     }
   }, [
-    id, prevId, isChecked, isDisabled, setIsChecked, setIsDisabled, initialized,
+    id, isChecked, isDisabled, setIsChecked, setIsDisabled, initialized,
     setShouldTriggerCheckboxContextChange, checkboxGroup, shouldTriggerCheckboxContextChange,
   ]);
 

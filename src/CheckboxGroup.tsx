@@ -7,7 +7,6 @@ import CheckboxGroupContext, { CheckboxEntry } from "./CheckboxGroupContext";
 interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   checked: boolean;
   disabled: boolean;
-  id: string;
 }
 
 interface CheckboxGroupProps {
@@ -35,12 +34,11 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
 
     const checkboxChangeArray: CheckboxChange[] = [];
 
-    checkboxes.forEach((checkbox, id): void => {
+    checkboxes.forEach((checkbox): void => {
       checkboxChangeArray.push({
         ...checkbox.props,
         checked: checkbox.isChecked || false,
         disabled: checkbox.isDisabled || false,
-        id,
       });
     });
 
@@ -123,6 +121,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   const hasCheckbox = (id: string) => checkboxes.has(id) || allCheckerCheckboxes.has(id) || noneCheckerCheckboxes.has(id);
 
   const assertIdDoesNotExist = (subject: string): void => {
+    console.log(subject)
     if (hasCheckbox(subject)) {
       throw new Error(`Duplicate id ${subject} in CheckboxGroup`);
     }

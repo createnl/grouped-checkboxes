@@ -9,12 +9,12 @@ afterEach(cleanup);
 it('AllCheckerCheckbox will be checked when all checkboxes are checked by attribute', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id="all-checker-1" data-testid="all-checker-1"/>
-            <Checkbox id="test-checkbox-1" data-testid="test-checkbox-1" checked/>
-            <Checkbox id="test-checkbox-2" data-testid="test-checkbox-2" checked/>
-            <AllCheckerCheckbox id="all-checker-2" data-testid="all-checker-2"/>
-            <Checkbox id="test-checkbox-3" data-testid="test-checkbox-3" checked/>
-            <AllCheckerCheckbox id="all-checker-3" data-testid="all-checker-3"/>
+            <AllCheckerCheckbox data-testid="all-checker-1"/>
+            <Checkbox data-testid="test-checkbox-1" checked/>
+            <Checkbox data-testid="test-checkbox-2" checked/>
+            <AllCheckerCheckbox data-testid="all-checker-2"/>
+            <Checkbox data-testid="test-checkbox-3" checked/>
+            <AllCheckerCheckbox data-testid="all-checker-3"/>
         </CheckboxGroup>
     );
 
@@ -30,12 +30,12 @@ it('AllCheckerCheckbox will be checked when all checkboxes are checked by attrib
 it('AllCheckerCheckbox will NOT be checked when NOT all checkboxes are checked by attribute', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id="all-checker-1" data-testid="all-checker-1"/>
-            <Checkbox id="test-checkbox-1" data-testid="test-checkbox-1" checked/>
-            <Checkbox id="test-checkbox-2" data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id="all-checker-2" data-testid="all-checker-2"/>
-            <Checkbox id="test-checkbox-3" data-testid="test-checkbox-3" checked/>
-            <AllCheckerCheckbox id="all-checker-3" data-testid="all-checker-3"/>
+            <AllCheckerCheckbox data-testid="all-checker-1"/>
+            <Checkbox data-testid="test-checkbox-1" checked/>
+            <Checkbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-2"/>
+            <Checkbox data-testid="test-checkbox-3" checked/>
+            <AllCheckerCheckbox data-testid="all-checker-3"/>
         </CheckboxGroup>
     );
 
@@ -51,12 +51,12 @@ it('AllCheckerCheckbox will NOT be checked when NOT all checkboxes are checked b
 it('AllCheckerCheckbox will NOT be checked when NO checkboxes are checked by attribute', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id="all-checker-1" data-testid="all-checker-1"/>
-            <Checkbox id="test-checkbox-1" data-testid="test-checkbox-1" />
-            <Checkbox id="test-checkbox-2" data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id="all-checker-2" data-testid="all-checker-2"/>
-            <Checkbox id="test-checkbox-3" data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id="all-checker-3" data-testid="all-checker-3"/>
+            <AllCheckerCheckbox data-testid="all-checker-1"/>
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-2"/>
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="all-checker-3"/>
         </CheckboxGroup>
     );
 
