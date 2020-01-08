@@ -11,9 +11,9 @@ afterEach(cleanup);
 it('CheckboxGroup with default checked checkbox will be checked', () => {
     const component = render(
         <CheckboxGroup defaultChecked>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -29,9 +29,9 @@ it('CheckboxGroup with default checked checkbox will be checked', () => {
 it('CheckboxGroup without default checked checkbox will be checked', () => {
     const component = render(
         <CheckboxGroup>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -47,9 +47,9 @@ it('CheckboxGroup without default checked checkbox will be checked', () => {
 it('CheckboxGroup with default disabled checkbox will be disabled', () => {
     const component = render(
         <CheckboxGroup defaultDisabled>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -65,9 +65,9 @@ it('CheckboxGroup with default disabled checkbox will be disabled', () => {
 it('CheckboxGroup without default disabled checkbox will be disabled', () => {
     const component = render(
         <CheckboxGroup>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -83,9 +83,9 @@ it('CheckboxGroup without default disabled checkbox will be disabled', () => {
 it('CheckboxGroup with default checked and default disabled checkbox will be checked and disabled', () => {
     const component = render(
         <CheckboxGroup defaultChecked defaultDisabled>
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -109,9 +109,9 @@ it('CheckboxGroup with default checked and default disabled checkbox will be che
 it('CheckboxGroup with default checked allCheckerCheckbox will be checked', () => {
     const component = render(
         <CheckboxGroup defaultChecked>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <AllCheckerCheckbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <AllCheckerCheckbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -127,9 +127,9 @@ it('CheckboxGroup with default checked allCheckerCheckbox will be checked', () =
 it('CheckboxGroup without default checked allCheckerCheckbox will be checked', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <AllCheckerCheckbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <AllCheckerCheckbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -145,9 +145,9 @@ it('CheckboxGroup without default checked allCheckerCheckbox will be checked', (
 it('CheckboxGroup with default disabled allCheckerCheckbox will be disabled', () => {
     const component = render(
         <CheckboxGroup defaultDisabled>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <AllCheckerCheckbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <AllCheckerCheckbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -163,9 +163,9 @@ it('CheckboxGroup with default disabled allCheckerCheckbox will be disabled', ()
 it('CheckboxGroup without default disabled allCheckerCheckbox will be disabled', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <AllCheckerCheckbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <AllCheckerCheckbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -181,9 +181,9 @@ it('CheckboxGroup without default disabled allCheckerCheckbox will be disabled',
 it('CheckboxGroup with default checked and default disabled allCheckerCheckbox will be checked and disabled', () => {
     const component = render(
         <CheckboxGroup defaultChecked defaultDisabled>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <AllCheckerCheckbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <AllCheckerCheckbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <AllCheckerCheckbox data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="test-checkbox-3" />
         </CheckboxGroup>
     );
 
@@ -207,10 +207,10 @@ it('CheckboxGroup with default checked and default disabled allCheckerCheckbox w
 it('CheckboxGroup with default checked combination of checkboxes and allCheckerCheckbox will be checked', () => {
     const component = render(
         <CheckboxGroup defaultChecked>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-4" />
         </CheckboxGroup>
     );
 
@@ -228,10 +228,10 @@ it('CheckboxGroup with default checked combination of checkboxes and allCheckerC
 it('CheckboxGroup without default checked combination of checkboxes and allCheckerCheckbox will be checked', () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-4" />
         </CheckboxGroup>
     );
 
@@ -249,10 +249,10 @@ it('CheckboxGroup without default checked combination of checkboxes and allCheck
 it('CheckboxGroup with default disabled combination of checkboxes and allCheckerCheckbox will be disabled', () => {
     const component = render(
         <CheckboxGroup defaultDisabled>
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-4" />
         </CheckboxGroup>
     );
 
@@ -270,12 +270,12 @@ it('CheckboxGroup with default disabled combination of checkboxes and allChecker
 it('CheckboxGroup without default disabled combination of checkboxes and allCheckerCheckbox will be disabled', () => {
     const component = render(
         <CheckboxGroup>
-            <NoneCheckerCheckbox id={"test-checkbox-6"} data-testid="test-checkbox-6" />
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
-            <NoneCheckerCheckbox id={"test-checkbox-5"} data-testid="test-checkbox-5" />
+            <NoneCheckerCheckbox data-testid="test-checkbox-6" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-4" />
+            <NoneCheckerCheckbox data-testid="test-checkbox-5" />
         </CheckboxGroup>
     );
 
@@ -297,12 +297,12 @@ it('CheckboxGroup without default disabled combination of checkboxes and allChec
 it('CheckboxGroup with default checked and default disabled combination of checkboxes and allCheckerCheckbox will be checked and disabled', () => {
     const component = render(
         <CheckboxGroup defaultChecked defaultDisabled>
-            <NoneCheckerCheckbox id={"test-checkbox-6"} data-testid="test-checkbox-6" />
-            <AllCheckerCheckbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"test-checkbox-4"} data-testid="test-checkbox-4" />
-            <NoneCheckerCheckbox id={"test-checkbox-5"} data-testid="test-checkbox-5" />
+            <NoneCheckerCheckbox data-testid="test-checkbox-6" />
+            <AllCheckerCheckbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="test-checkbox-4" />
+            <NoneCheckerCheckbox data-testid="test-checkbox-5" />
         </CheckboxGroup>
     );
 

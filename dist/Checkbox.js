@@ -23,13 +23,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var CheckboxGroupContext_1 = __importDefault(require("./CheckboxGroupContext"));
+var uuid_1 = __importDefault(require("./uuid"));
 var Checkbox = function (props) {
-    var checked = props.checked, disabled = props.disabled, id = props.id, onChange = props.onChange;
+    var checked = props.checked, disabled = props.disabled, onChange = props.onChange;
+    var id = react_1.useState(uuid_1.default())[0];
     var checkboxGroup = react_1.useContext(CheckboxGroupContext_1.default);
-    var _a = react_1.useState(id), prevId = _a[0], setPrevId = _a[1];
-    var _b = react_1.useState(true), shouldTriggerCheckboxContextChange = _b[0], setShouldTriggerCheckboxContextChange = _b[1];
-    var _c = react_1.useState(checked !== undefined ? checked : checkboxGroup.defaultChecked), isChecked = _c[0], setIsChecked = _c[1];
-    var _d = react_1.useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _d[0], setIsDisabled = _d[1];
+    var _a = react_1.useState(true), shouldTriggerCheckboxContextChange = _a[0], setShouldTriggerCheckboxContextChange = _a[1];
+    var _b = react_1.useState(checked !== undefined ? checked : checkboxGroup.defaultChecked), isChecked = _b[0], setIsChecked = _b[1];
+    var _c = react_1.useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _c[0], setIsDisabled = _c[1];
     react_1.useEffect(function () {
         checkboxGroup.assertIdDoesNotExist(id);
         return function () {
@@ -44,11 +45,6 @@ var Checkbox = function (props) {
         }
     }, [checked, setIsChecked, setShouldTriggerCheckboxContextChange]);
     react_1.useEffect(function () {
-        if (prevId !== id) {
-            checkboxGroup.assertIdDoesNotExist(id);
-            checkboxGroup.checkboxes.delete(prevId);
-            setPrevId(id);
-        }
         checkboxGroup.checkboxes.set(id, {
             isChecked: isChecked,
             isDisabled: isDisabled,
@@ -61,7 +57,7 @@ var Checkbox = function (props) {
             setShouldTriggerCheckboxContextChange(false);
         }
     }, [
-        id, prevId, isChecked, isDisabled, setIsChecked, setIsDisabled,
+        id, isChecked, isDisabled, setIsChecked, setIsDisabled,
         setShouldTriggerCheckboxContextChange, checkboxGroup, shouldTriggerCheckboxContextChange,
     ]);
     var handleChange = function (event) {

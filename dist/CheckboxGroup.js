@@ -35,8 +35,8 @@ var CheckboxGroup = function (_a) {
             return;
         }
         var checkboxChangeArray = [];
-        checkboxes.forEach(function (checkbox, id) {
-            checkboxChangeArray.push(__assign(__assign({}, checkbox.props), { checked: checkbox.isChecked || false, disabled: checkbox.isDisabled || false, id: id }));
+        checkboxes.forEach(function (checkbox) {
+            checkboxChangeArray.push(__assign(__assign({}, checkbox.props), { checked: checkbox.isChecked || false, disabled: checkbox.isDisabled || false }));
         });
         onChange(checkboxChangeArray);
     };
@@ -100,6 +100,7 @@ var CheckboxGroup = function (_a) {
     };
     var hasCheckbox = function (id) { return checkboxes.has(id) || allCheckerCheckboxes.has(id) || noneCheckerCheckboxes.has(id); };
     var assertIdDoesNotExist = function (subject) {
+        console.log(subject);
         if (hasCheckbox(subject)) {
             throw new Error("Duplicate id " + subject + " in CheckboxGroup");
         }

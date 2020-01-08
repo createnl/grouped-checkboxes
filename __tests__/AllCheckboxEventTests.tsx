@@ -9,7 +9,7 @@ afterEach(cleanup);
 it("Unchecked allCheckerCheckbox will check on click", () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox"} data-testid="test-checkbox" />
+            <AllCheckerCheckbox data-testid="test-checkbox" />
         </CheckboxGroup>,
     );
 
@@ -23,7 +23,7 @@ it("Unchecked allCheckerCheckbox will check on click", () => {
 it("Checked allCheckerCheckbox will uncheck on click", () => {
     const component = render(
         <CheckboxGroup defaultChecked>
-            <AllCheckerCheckbox id={"test-checkbox"} data-testid="test-checkbox" />
+            <AllCheckerCheckbox data-testid="test-checkbox" />
         </CheckboxGroup>,
     );
 
@@ -37,9 +37,9 @@ it("Checked allCheckerCheckbox will uncheck on click", () => {
 it("All checkboxes will check on allCheckboxesChecker click", () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"all-checker-checkbox"} data-testid="all-checker-checkbox" />
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
         </CheckboxGroup>,
     );
 
@@ -57,9 +57,9 @@ it("All checkboxes will check on allCheckboxesChecker click", () => {
 it("All checkboxes will uncheck on allCheckboxesChecker click", () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"all-checker-checkbox"} data-testid="all-checker-checkbox" />
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" checked/>
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" checked/>
+            <AllCheckerCheckbox data-testid="all-checker-checkbox" />
+            <Checkbox data-testid="test-checkbox-1" checked/>
+            <Checkbox data-testid="test-checkbox-2" checked/>
         </CheckboxGroup>,
     );
 
@@ -77,11 +77,11 @@ it("All checkboxes will uncheck on allCheckboxesChecker click", () => {
 it("All allCheckerCheckboxes will uncheck when not all checkboxes are checked", () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"all-checker-checkbox-1"} data-testid="all-checker-checkbox-1" />
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox" checked/>
-            <Checkbox id={"test-checkbox-2"} checked/>
-            <Checkbox id={"test-checkbox-3"} checked/>
-            <AllCheckerCheckbox id={"all-checker-checkbox-2"} data-testid="all-checker-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-1" />
+            <Checkbox data-testid="test-checkbox" checked/>
+            <Checkbox checked/>
+            <Checkbox checked/>
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-2" />
         </CheckboxGroup>,
     );
 
@@ -99,11 +99,11 @@ it("All allCheckerCheckboxes will uncheck when not all checkboxes are checked", 
 it("All allCheckerCheckboxes will check when all checkboxes are checked", () => {
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"all-checker-checkbox-1"} data-testid="all-checker-checkbox-1" />
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"all-checker-checkbox-2"} data-testid="all-checker-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-2" />
         </CheckboxGroup>,
     );
 
@@ -127,11 +127,11 @@ it("Click on allCheckerCheckbox will trigger onChange on checkboxGroup", () => {
 
     const component = render(
         <CheckboxGroup onChange={testOnChange}>
-            <AllCheckerCheckbox id={"all-checker-checkbox-1"} data-testid="all-checker-checkbox-1" />
-            <Checkbox id={"test-checkbox-1"} data-testid="test-checkbox-1" />
-            <Checkbox id={"test-checkbox-2"} data-testid="test-checkbox-2" />
-            <Checkbox id={"test-checkbox-3"} data-testid="test-checkbox-3" />
-            <AllCheckerCheckbox id={"all-checker-checkbox-2"} data-testid="all-checker-checkbox-2" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-1" />
+            <Checkbox data-testid="test-checkbox-2" />
+            <Checkbox data-testid="test-checkbox-3" />
+            <AllCheckerCheckbox data-testid="all-checker-checkbox-2" />
         </CheckboxGroup>,
     );
     setTimeout(() => {
@@ -146,7 +146,7 @@ it("Click will trigger onChange on allCheckerCheckbox", () => {
 
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox"} data-testid="test-checkbox" onChange={testOnChange} />
+            <AllCheckerCheckbox data-testid="test-checkbox" onChange={testOnChange} />
         </CheckboxGroup>,
     );
 
@@ -161,7 +161,7 @@ it("Click will trigger onChange on allCheckerCheckbox", () => {
 
     const component = render(
         <CheckboxGroup>
-            <AllCheckerCheckbox id={"test-checkbox"} data-testid="test-checkbox" onChange={testOnChange} />
+            <AllCheckerCheckbox data-testid="test-checkbox" onChange={testOnChange} />
         </CheckboxGroup>,
     );
 
@@ -184,7 +184,7 @@ it("onAllCheckerCheckboxChange with unknown id will do nothing", (done) => {
                             ...props,
                             allCheckerCheckboxes: mockedAllCheckerCheckboxes,
                         }}>
-                            <AllCheckerCheckbox id={"test-checkbox"} data-testid="all-checker-checkbox-1" />
+                            <AllCheckerCheckbox data-testid="all-checker-checkbox-1" />
                         </CheckboxGroupContext.Provider>
                     );
                 }}
@@ -194,9 +194,8 @@ it("onAllCheckerCheckboxChange with unknown id will do nothing", (done) => {
 
     const component = render(mock());
     const checkbox1 = component.getByTestId("all-checker-checkbox-1") as HTMLInputElement;
-    expect(mockedAllCheckerCheckboxes.has("test-checkbox")).toBe(true);
     mockedAllCheckerCheckboxes.clear();
-    expect(mockedAllCheckerCheckboxes.has("test-checkbox")).toBe(false);
+    expect(mockedAllCheckerCheckboxes.size).toBe(0);
     fireEvent.change(checkbox1);
 
     setTimeout(() => {

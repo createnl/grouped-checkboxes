@@ -33,17 +33,15 @@ const MyGroupedCheckboxes = (props) => {
 
     return (
         <CheckboxGroup onChange={onCheckboxChange}>
-          <AllCheckerCheckbox id="check-all" />
-          <Checkbox id="first-option" />
-          <Checkbox id="second-option" />
-          <Checkbox id="third-option" />
+          <AllCheckerCheckbox />
+          <Checkbox value="option-1"/>
+          <Checkbox value="option-2" />
+          <Checkbox value="option-3" />
         </CheckboxGroup>
     );
 };
 ```
-Note that:
-- `Checkbox` and `AllCheckerCheckbox` must be inside a `CheckboxGroup`
-- All checkboxes and allCheckerCheckboxes must have an unique id
+Note that `Checkbox` and `AllCheckerCheckbox` must be inside a `CheckboxGroup`
 
 ## Features
 - Multiple `AllCheckerCheckboxes` and `NoneCheckerCheckboxes` inside a group
@@ -58,16 +56,16 @@ Note that:
 ### Checking checkboxes
 ```jsx harmony
 <CheckboxGroup defaultChecked> // Set defaultChecked to check all by default
-  <AllCheckerCheckbox id="check-all" checked/> // Error: You cant contol allCheckerCheckboxes individually (will check automatically if necessary)
-  <Checkbox id="first-option" checked/> // Check individual checkboxes
+  <AllCheckerCheckbox checked/> // Error: You cant contol allCheckerCheckboxes individually (will check automatically if necessary)
+  <Checkbox value="anything" checked/> // Check individual checkboxes
 </CheckboxGroup>
 ```
 
 ### Disabling checkboxes
 ```jsx harmony
 <CheckboxGroup defaultDisabled> // Set defaultDisabled to disable all by default
-  <AllCheckerCheckbox id="check-all" disabled/> // Disable allCheckerCheckbox, will still check if all checkboxes are checked
-  <Checkbox id="first-option" disabled/> // Disable individual checkboxes
+  <AllCheckerCheckbox disabled/> // Disable allCheckerCheckbox, will still check if all checkboxes are checked
+  <Checkbox value="anything" disabled/> // Disable individual checkboxes
 </CheckboxGroup>
 ```
 
@@ -84,19 +82,19 @@ const PermissionsFrom = (props) => {
     return (
         <CheckboxGroup onChange={console.log}>
           <label>
-            <Checkbox id="tos" />
+            <Checkbox value="tos" />
             Terms and Conditions
           </label>
           <label>
-            <Checkbox id="privacy-policy" />
+            <Checkbox value="privacy-policy" />
             Privacy Policy
           </label>
           <label>
-            <Checkbox id="advertisements" />
+            <Checkbox value="advertisements" />
             Advertisements
           </label>
           <label>
-            <AllCheckerCheckbox id="check-all" />
+            <AllCheckerCheckbox />
             Agree to all
           </label>
         </CheckboxGroup>
@@ -110,17 +108,17 @@ The value of an onChange parameter looks like:
     {
         "checked": true,
         "disabled": false,
-        "id": "tos"
+        "value": "tos"
     },
     {
         "checked": true,
         "disabled": false,
-        "id": "privacy-policy"
+        "value": "privacy-policy"
     }, 
     {
         "checked": true,
         "disabled": false,
-        "id": "advertisements"
+        "value": "advertisements"
     }
 ]
 ```
@@ -143,19 +141,19 @@ const LunchDeclaration = (props) => {
         <CheckboxGroup onChange={console.log}>
           <h1>What did you eat for lunch?</h1>
           <label>
-            <Checkbox id="pizza" />
+            <Checkbox value="pizza" />
             Pizza
           </label>
           <label>
-            <Checkbox id="burger" />
+            <Checkbox value="burger" />
             Burger
           </label>
           <label>
-            <Checkbox id="fries" />
+            <Checkbox value="fries" />
             Fries
           </label>
           <label>
-            <NoneCheckerCheckbox id="nothing" />
+            <NoneCheckerCheckbox />
             Nothing
           </label>
         </CheckboxGroup>
@@ -168,17 +166,17 @@ The value of an onChange parameter looks like:
     {
         "checked": true,
         "disabled": false,
-        "id": "pizza"
+        "value": "pizza"
     },
     {
         "checked": true,
         "disabled": false,
-        "id": "burger"
+        "value": "burger"
     }, 
     {
         "checked": true,
         "disabled": false,
-        "id": "fries"
+        "value": "fries"
     }
 ]
 ```

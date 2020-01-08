@@ -4,9 +4,7 @@ export interface CheckboxEntry {
     setIsChecked: (checked: boolean) => void;
     isDisabled?: boolean;
     setIsDisabled: (disabled: boolean) => void;
-    props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
-        id: string;
-    };
+    props: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
 declare const _default: React.Context<{
     allCheckerCheckboxes: Map<string, CheckboxEntry>;
