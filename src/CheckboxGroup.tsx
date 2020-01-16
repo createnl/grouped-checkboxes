@@ -121,7 +121,6 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   const hasCheckbox = (id: string) => checkboxes.has(id) || allCheckerCheckboxes.has(id) || noneCheckerCheckboxes.has(id);
 
   const assertIdDoesNotExist = (subject: string): void => {
-    console.log(subject)
     if (hasCheckbox(subject)) {
       throw new Error(`Duplicate id ${subject} in CheckboxGroup`);
     }
