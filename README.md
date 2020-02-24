@@ -24,7 +24,7 @@ Codesandbox: https://codesandbox.io/s/grouped-checkboxes-v5sww
 
 ``` jsx harmony
 import React from "react";
-import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
+import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes';
 
 const MyGroupedCheckboxes = (props) => {
     const onCheckboxChange = (checkboxes) => {
@@ -72,7 +72,7 @@ Note that `Checkbox` and `AllCheckerCheckbox` must be inside a `CheckboxGroup`
 ### Real life example (with check all)
 ``` jsx harmony
 import React from "react";
-import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
+import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes';
 
 const PermissionsFrom = (props) => {
     const onCheckboxChange = (checkboxes) => {
@@ -130,7 +130,7 @@ This checkbox can be clicked to uncheck everything else, but can't be unchecked 
 
 ``` jsx harmony
 import React from "react";
-import { NoneCheckerCheckbox, Checkbox, CheckboxGroup } from 'grouped-checkboxes';
+import { NoneCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes';
 
 const LunchDeclaration = (props) => {
     const onCheckboxChange = (checkboxes) => {
