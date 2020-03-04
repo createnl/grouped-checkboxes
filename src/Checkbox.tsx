@@ -1,6 +1,11 @@
 import React, {
   forwardRef,
-  ForwardRefExoticComponent, ReactElement, RefAttributes, useContext, useEffect, useState,
+  ForwardRefExoticComponent,
+  ReactElement,
+  RefAttributes,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 import CheckboxGroupContext from './CheckboxGroupContext';
 import uuid from "./uuid";
