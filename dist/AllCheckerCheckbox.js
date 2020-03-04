@@ -24,7 +24,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var CheckboxGroupContext_1 = __importDefault(require("./CheckboxGroupContext"));
 var uuid_1 = __importDefault(require("./uuid"));
-var AllCheckerCheckbox = function (props) {
+var AllCheckerCheckbox = react_1.forwardRef(function (props, ref) {
     var disabled = props.disabled, onChange = props.onChange;
     var id = react_1.useState(uuid_1.default())[0];
     var checkboxGroup = react_1.useContext(CheckboxGroupContext_1.default);
@@ -67,7 +67,7 @@ var AllCheckerCheckbox = function (props) {
             onChange(event);
         }
     };
-    return (react_1.default.createElement("input", __assign({ type: "checkbox" }, props, { onChange: handleChange, checked: isChecked !== undefined ? isChecked : false, disabled: isDisabled !== undefined ? isDisabled : false })));
-};
+    return (react_1.default.createElement("input", __assign({ type: "checkbox" }, props, { ref: ref, onChange: handleChange, checked: isChecked !== undefined ? isChecked : false, disabled: isDisabled !== undefined ? isDisabled : false })));
+});
 exports.default = AllCheckerCheckbox;
 //# sourceMappingURL=AllCheckerCheckbox.js.map

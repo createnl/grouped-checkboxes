@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
-declare type CheckboxProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-declare const Checkbox: FC<CheckboxProps>;
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
+declare type CheckboxProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & RefAttributes<HTMLInputElement>;
+declare const Checkbox: ForwardRefExoticComponent<CheckboxProps>;
 export default Checkbox;

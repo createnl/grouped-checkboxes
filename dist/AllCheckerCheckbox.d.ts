@@ -1,6 +1,4 @@
-import React, { FC } from 'react';
-interface AllCheckerCheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    checked?: never;
-}
-declare const AllCheckerCheckbox: FC<AllCheckerCheckboxProps>;
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
+declare type AllCheckerCheckboxProps = Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & RefAttributes<HTMLInputElement>, 'checked'>;
+declare const AllCheckerCheckbox: ForwardRefExoticComponent<AllCheckerCheckboxProps>;
 export default AllCheckerCheckbox;

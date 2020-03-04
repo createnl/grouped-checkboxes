@@ -1,6 +1,4 @@
-import React, { FC } from 'react';
-interface NoneCheckerCheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    checked?: never;
-}
-declare const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps>;
+import React, { ForwardRefExoticComponent, RefAttributes } from 'react';
+declare type NoneCheckerCheckboxProps = Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & RefAttributes<HTMLInputElement>, 'checked'>;
+declare const NoneCheckerCheckbox: ForwardRefExoticComponent<NoneCheckerCheckboxProps>;
 export default NoneCheckerCheckbox;
