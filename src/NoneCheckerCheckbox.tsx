@@ -1,14 +1,18 @@
 import React, {
-  FC, ReactElement, useContext, useEffect, useState,
+  forwardRef,
+  ForwardRefExoticComponent,
+  ReactElement,
+  RefAttributes,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 import CheckboxGroupContext from './CheckboxGroupContext';
 import uuid from "./uuid";
 
-interface NoneCheckerCheckboxProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  checked?: never;
-}
+type NoneCheckerCheckboxProps = Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & RefAttributes<HTMLInputElement>, 'checked'>
 
-const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement => {
+const NoneCheckerCheckbox: ForwardRefExoticComponent<NoneCheckerCheckboxProps> = forwardRef((props, ref): ReactElement => {
   const {
     disabled,
     onChange,
@@ -68,11 +72,12 @@ const NoneCheckerCheckbox: FC<NoneCheckerCheckboxProps> = (props): ReactElement 
     <input
       type="checkbox"
       {...props}
+      ref={ref}
       onChange={handleChange}
       checked={isChecked !== undefined ? isChecked : false}
       disabled={isDisabled !== undefined ? isDisabled : false}
     />
   );
-};
+});
 
 export default NoneCheckerCheckbox;

@@ -181,3 +181,31 @@ The value of an onChange parameter looks like:
 ]
 ```
 Note that the value of the NoneCheckerCheckbox will not be passed.
+
+### Accessing the native input
+The `Checkbox`, `AllCheckerCheckbox` and `NoneCheckerCheckboxes` are nothing more than controlled native input elements and uses the [forwardRef](https://reactjs.org/docs/forwarding-refs.html) function for you to pass your ref to.
+This enables you to control the DOM node and for example focus on the element.
+
+``` jsx harmony
+import React from "react";
+import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes';
+
+const MyGroupedCheckboxes = (props) => {
+    const checkboxRef = React.createRef();
+
+    React.useEffect(() => {
+        if (checkboxRef.current) {
+            // Focus on the input element
+            checkboxRef.current.focus();
+        }
+    }, [checkboxRef])
+
+    return (
+        <CheckboxGroup>
+          <AllCheckerCheckbox />
+          <Checkbox ref={checkboxRef} value="option-1"/>
+          <Checkbox value="option-2" />
+          <Checkbox value="option-3" />
+        </CheckboxGroup>
+    );
+};

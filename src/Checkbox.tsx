@@ -1,12 +1,18 @@
 import React, {
-  FC, ReactElement, useContext, useEffect, useState,
+  forwardRef,
+  ForwardRefExoticComponent,
+  ReactElement,
+  RefAttributes,
+  useContext,
+  useEffect,
+  useState,
 } from 'react';
 import CheckboxGroupContext from './CheckboxGroupContext';
 import uuid from "./uuid";
 
-type CheckboxProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type CheckboxProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & RefAttributes<HTMLInputElement>;
 
-const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
+const Checkbox: ForwardRefExoticComponent<CheckboxProps> = forwardRef((props, ref): ReactElement => {
   const {
     checked,
     disabled,
@@ -70,11 +76,12 @@ const Checkbox: FC<CheckboxProps> = (props): ReactElement => {
     <input
       type="checkbox"
       {...props}
+      ref={ref}
       onChange={handleChange}
       checked={isChecked !== undefined ? isChecked : false}
       disabled={isDisabled !== undefined ? isDisabled : false}
     />
   );
-};
+});
 
 export default Checkbox;
