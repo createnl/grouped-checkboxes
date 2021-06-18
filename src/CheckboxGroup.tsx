@@ -4,7 +4,7 @@ import React, {
 } from "react";
 import CheckboxGroupContext, { CheckboxEntry } from "./CheckboxGroupContext";
 
-interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+export interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   checked: boolean;
   disabled: boolean;
 }
