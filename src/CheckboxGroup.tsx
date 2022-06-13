@@ -1,7 +1,10 @@
 import debounce from "lodash.debounce";
 import React, {
-  FC, ReactElement, useState,
-} from "react";
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  useState,
+} from 'react';
 import CheckboxGroupContext, { CheckboxEntry } from "./CheckboxGroupContext";
 
 export interface CheckboxChange extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -17,11 +20,11 @@ interface CheckboxGroupProps {
 
 const ON_CHANGE_DEBOUNCE_TIMEOUT = 100;
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
-  children,
+const CheckboxGroup: FC<PropsWithChildren<CheckboxGroupProps>> = ({
   defaultChecked,
   defaultDisabled,
   onChange,
+  children,
 }): ReactElement => {
   const [checkboxes] = useState(new Map<string, CheckboxEntry>());
   const [allCheckerCheckboxes] = useState(new Map<string, CheckboxEntry>());

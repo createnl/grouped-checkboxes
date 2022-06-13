@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -38,10 +42,10 @@ var react_1 = __importStar(require("react"));
 var CheckboxGroupContext_1 = __importDefault(require("./CheckboxGroupContext"));
 var ON_CHANGE_DEBOUNCE_TIMEOUT = 100;
 var CheckboxGroup = function (_a) {
-    var children = _a.children, defaultChecked = _a.defaultChecked, defaultDisabled = _a.defaultDisabled, onChange = _a.onChange;
-    var checkboxes = react_1.useState(new Map())[0];
-    var allCheckerCheckboxes = react_1.useState(new Map())[0];
-    var noneCheckerCheckboxes = react_1.useState(new Map())[0];
+    var defaultChecked = _a.defaultChecked, defaultDisabled = _a.defaultDisabled, onChange = _a.onChange, children = _a.children;
+    var checkboxes = (0, react_1.useState)(new Map())[0];
+    var allCheckerCheckboxes = (0, react_1.useState)(new Map())[0];
+    var noneCheckerCheckboxes = (0, react_1.useState)(new Map())[0];
     var dispatchOnChange = function () {
         if (onChange === undefined) {
             return;
@@ -52,7 +56,7 @@ var CheckboxGroup = function (_a) {
         });
         onChange(checkboxChangeArray);
     };
-    var debouncedOnChange = lodash_debounce_1.default(dispatchOnChange, ON_CHANGE_DEBOUNCE_TIMEOUT);
+    var debouncedOnChange = (0, lodash_debounce_1.default)(dispatchOnChange, ON_CHANGE_DEBOUNCE_TIMEOUT);
     var setAllCheckboxesChecked = function (state) {
         allCheckerCheckboxes.forEach(function (checkbox) { return checkbox.setIsChecked(state); });
         noneCheckerCheckboxes.forEach(function (checkbox) { return checkbox.setIsChecked(!state); });
@@ -113,7 +117,7 @@ var CheckboxGroup = function (_a) {
     var hasCheckbox = function (id) { return checkboxes.has(id) || allCheckerCheckboxes.has(id) || noneCheckerCheckboxes.has(id); };
     var assertIdDoesNotExist = function (subject) {
         if (hasCheckbox(subject)) {
-            throw new Error("Duplicate id " + subject + " in CheckboxGroup");
+            throw new Error("Duplicate id ".concat(subject, " in CheckboxGroup"));
         }
     };
     var contextValue = {
