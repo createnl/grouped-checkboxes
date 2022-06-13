@@ -12,7 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -36,21 +40,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var CheckboxGroupContext_1 = __importDefault(require("./CheckboxGroupContext"));
 var uuid_1 = __importDefault(require("./uuid"));
-var AllCheckerCheckbox = react_1.forwardRef(function (props, ref) {
+var AllCheckerCheckbox = (0, react_1.forwardRef)(function (props, ref) {
     var disabled = props.disabled, onChange = props.onChange;
-    var id = react_1.useState(uuid_1.default())[0];
-    var checkboxGroup = react_1.useContext(CheckboxGroupContext_1.default);
-    var _a = react_1.useState(false), initialized = _a[0], setInitialized = _a[1];
-    var _b = react_1.useState(true), shouldTriggerCheckboxContextChange = _b[0], setShouldTriggerCheckboxContextChange = _b[1];
-    var _c = react_1.useState(checkboxGroup.defaultChecked), isChecked = _c[0], setIsChecked = _c[1];
-    var _d = react_1.useState(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _d[0], setIsDisabled = _d[1];
-    react_1.useEffect(function () {
+    var id = (0, react_1.useState)((0, uuid_1.default)())[0];
+    var checkboxGroup = (0, react_1.useContext)(CheckboxGroupContext_1.default);
+    var _a = (0, react_1.useState)(false), initialized = _a[0], setInitialized = _a[1];
+    var _b = (0, react_1.useState)(true), shouldTriggerCheckboxContextChange = _b[0], setShouldTriggerCheckboxContextChange = _b[1];
+    var _c = (0, react_1.useState)(checkboxGroup.defaultChecked), isChecked = _c[0], setIsChecked = _c[1];
+    var _d = (0, react_1.useState)(disabled !== undefined ? disabled : checkboxGroup.defaultDisabled), isDisabled = _d[0], setIsDisabled = _d[1];
+    (0, react_1.useEffect)(function () {
         checkboxGroup.assertIdDoesNotExist(id);
         return function () {
             checkboxGroup.allCheckerCheckboxes.delete(id);
         };
     }, []);
-    react_1.useEffect(function () {
+    (0, react_1.useEffect)(function () {
         checkboxGroup.allCheckerCheckboxes.set(id, {
             isChecked: isChecked,
             isDisabled: isDisabled,
