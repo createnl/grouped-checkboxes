@@ -1,6 +1,9 @@
 import debounce from "lodash.debounce";
 import React, {
-  FC, PropsWithChildren, ReactElement, useState,
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  useState,
 } from 'react';
 import CheckboxGroupContext, { CheckboxEntry } from "./CheckboxGroupContext";
 
