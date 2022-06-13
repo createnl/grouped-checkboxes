@@ -1,6 +1,7 @@
+const {defaults} = require('jest-config');
+
 module.exports = {
-    // Jest transformations -- this adds support for TypeScript
-    // using ts-jest
+    moduleFileExtensions: ['ts', 'tsx', ...defaults.moduleFileExtensions],
     transform: {
         "^.+\\.tsx?$": "ts-jest"
     },
