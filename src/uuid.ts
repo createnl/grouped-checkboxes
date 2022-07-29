@@ -6,7 +6,7 @@ export default (): string => {
             return Array.from(
                 // @ts-ignore
                 // Modern Browser
-                (window.crypto || window.msCrypto).getRandomValues(new Uint8Array(16))
+                (window.crypto || window.msCrypto).getRandomValues(new Uint8Array(16)),
             );
         } catch (error) {
             // Legacy Browser, fallback to Math.random
@@ -18,8 +18,8 @@ export default (): string => {
 
     const m = (v: number): string => {
         let vString = v.toString(16);
-        if (vString.length < 2){
-            vString = "0" + v;
+        if (vString.length < 2) {
+            vString = `0${v}`;
         }
 
         return vString;
@@ -31,5 +31,5 @@ export default (): string => {
 
     return rnd
         .map(m)
-        .join("");
-}
+        .join('');
+};

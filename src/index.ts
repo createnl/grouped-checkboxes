@@ -4,8 +4,8 @@ import CheckboxGroup from './CheckboxGroup';
 import NoneCheckerCheckbox from './NoneCheckerCheckbox';
 
 export {
-  AllCheckerCheckbox,
-  Checkbox,
-  CheckboxGroup,
-  NoneCheckerCheckbox,
+    AllCheckerCheckbox,
+    Checkbox,
+    CheckboxGroup,
+    NoneCheckerCheckbox,
 };
