@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/createnl/grouped-checkboxes.svg?branch=master)](https://travis-ci.org/createnl/grouped-checkboxes)
 [![GitHub](https://img.shields.io/github/license/createnl/grouped-checkboxes)](https://github.com/createnl/grouped-checkboxes/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dt/@createnl/grouped-checkboxes)](https://www.npmjs.com/package/@createnl/grouped-checkboxes)
-[![React](https://img.shields.io/badge/React-^16.8.0-brightgreen)](https://github.com/facebook/react)
+[![React](https://img.shields.io/badge/React->=16.8.0-brightgreen)](https://github.com/facebook/react)
 
 An easy to use React Component to create a checkbox group with a checkbox to check all checkboxes and a checkbox to check none.
 
